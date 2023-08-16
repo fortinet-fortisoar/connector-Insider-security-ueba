@@ -1,0 +1,179 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "99a91208-c318-4093-8a43-b6c02de8dd60",
+      "@type": "WorkflowCollection",
+      "name": "Sample - Insider Security UEBA - 1.0.0",
+      "description": "User and Entity Behaviour Analytics - Detect malicious user activity early in your on-premise or cloud infrastructure.",
+      "visible": true,
+      "image": null,
+      "recordTags": [
+        "Insider",
+        "Insider-security-ueba"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "b1ea11e1-df10-4e03-acc0-9b38f2caf0c7",
+          "collection": "/api/3/workflow_collections/99a91208-c318-4093-8a43-b6c02de8dd60",
+          "triggerLimit": null,
+          "description": "Searches and fetches the latest matching alert OR Gets details regarding an alert ID.",
+          "name": "Get Alerts",
+          "tag": "#Insider Security UEBA",
+          "recordTags": [
+            "Insider",
+            "Insider-security-ueba"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/fe5d990e-bb58-4e25-ada6-2fab4c66a428",
+          "steps": [
+            {
+              "uuid": "fe5d990e-bb58-4e25-ada6-2fab4c66a428",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "32cdd54b-6e32-4732-a529-724a13a2e192",
+                "title": "Insider Security UEBA: Get Alerts",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "05a2497b-0292-401c-9bae-3927bf606611",
+              "@type": "WorkflowStep",
+              "name": "Get Alerts",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Insider Security UEBA",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "Insider-security-ueba",
+                "operation": "get_alerts",
+                "operationTitle": "Get Alerts",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "7509b3bd-3856-4ab0-9a84-db8676b85d6e",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Alerts",
+              "sourceStep": "/api/3/workflow_steps/fe5d990e-bb58-4e25-ada6-2fab4c66a428",
+              "targetStep": "/api/3/workflow_steps/05a2497b-0292-401c-9bae-3927bf606611"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "e611e29e-bb41-4951-ada1-eacdd1202b9f",
+          "collection": "/api/3/workflow_collections/99a91208-c318-4093-8a43-b6c02de8dd60",
+          "triggerLimit": null,
+          "description": "Search and Enrich Data on an underlying Elasticsearch instance.",
+          "name": "Data Enrichment",
+          "tag": "#Insider Security UEBA",
+          "recordTags": [
+            "Insider",
+            "Insider-security-ueba"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/af978392-508e-4cda-89d0-3195c5b25832",
+          "steps": [
+            {
+              "uuid": "af978392-508e-4cda-89d0-3195c5b25832",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "732157cd-2813-489c-9d5c-8f3d6166574b",
+                "title": "Insider Security UEBA: Data Enrichment",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "af7d1773-ad6d-4e29-9d4f-ed31a7a80934",
+              "@type": "WorkflowStep",
+              "name": "Data Enrichment",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Insider Security UEBA",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "Insider-security-ueba",
+                "operation": "data_enrichment",
+                "operationTitle": "Data Enrichment",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "ea10c972-8b4b-4046-bdd7-a13c1c5ae131",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Data Enrichment",
+              "sourceStep": "/api/3/workflow_steps/af978392-508e-4cda-89d0-3195c5b25832",
+              "targetStep": "/api/3/workflow_steps/af7d1773-ad6d-4e29-9d4f-ed31a7a80934"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

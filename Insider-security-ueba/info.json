@@ -1,0 +1,220 @@
+{
+  "name": "Insider-security-ueba",
+  "label": "Insider Security UEBA",
+  "version": "1.0.0",
+  "description": "User and Entity Behaviour Analytics - Detect malicious user activity early in your on-premise or cloud infrastructure.",
+  "publisher": "Fortinet",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "category": "Threat Intelligence",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "name": "server_url",
+        "title": "Server URL",
+        "type": "text",
+        "editable": true,
+        "visible": true,
+        "required": true,
+        "tooltip": "Specify the Sever URL of the InsiderSecurity Instance.",
+        "description": "Specify the Sever URL of the InsiderSecurity Instance."
+      },
+      {
+        "name": "api_token",
+        "title": "API Token",
+        "type": "text",
+        "editable": true,
+        "visible": true,
+        "required": true,
+        "tooltip": "Specify the API Token that you have generated on the InsiderSecurity instance.",
+        "description": "Specify the API Token that you have generated on the InsiderSecurity instance."
+      },
+      {
+        "name": "verify_ssl",
+        "title": "Verify SSL",
+        "type": "checkbox",
+        "editable": true,
+        "visible": true,
+        "required": false,
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "get_alerts",
+      "title": "Get Alerts",
+      "annotation": "get_alerts",
+      "description": "Searches and fetches the latest matching alert OR Gets details regarding an alert ID.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "action",
+          "title": "Action",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Select the mode of Action of fetching alerts, By providing Alert ID or by Searching Alerts by Threat name",
+          "description": "Select the mode of Action of fetching alerts, By providing Alert ID or by Searching Alerts by Threat name",
+          "options": [
+            "get_meta",
+            "search_alert"
+          ],
+          "onchange": {
+            "get_meta": [
+              {
+                "name": "id",
+                "title": "Alert ID",
+                "type": "text",
+                "editable": true,
+                "visible": true,
+                "required": true,
+                "tooltip": "Specify the Alert ID You want to be fetched. This value can be retrieved from servicenow tickets, field ‘u_alert_id’.",
+                "description": "Specify the Alert ID You want to be fetched. This value can be retrieved from servicenow tickets, field ‘u_alert_id’."
+              }
+            ],
+            "search_alert": [
+              {
+                "name": "risk_entity",
+                "title": "Risk Entity",
+                "type": "text",
+                "editable": true,
+                "visible": true,
+                "required": true,
+                "tooltip": "Specify the entity which is at risk, It can be found in the ticket.",
+                "description": "Specify the entity which is at risk, It can be found in the ticket."
+              },
+              {
+                "name": "threat_name",
+                "title": "Threat Name",
+                "type": "text",
+                "editable": true,
+                "visible": true,
+                "required": true,
+                "tooltip": "Specify the Name of threat to look up and fetch.",
+                "description": "Specify the Name of threat to look up and fetch."
+              },
+              {
+                "name": "time_end",
+                "title": "Time END",
+                "type": "text",
+                "editable": true,
+                "visible": true,
+                "required": true,
+                "tooltip": "Specify the End time to search from. Time should be in epoch format.",
+                "description": "Specify the End time to search from. Time should be in epoch format."
+              }
+            ]
+          }
+        }
+      ],
+      "output_schema": {
+        "_timestamp": "",
+        "type": "",
+        "risk_entity": ",",
+        "attack_entity": "",
+        "affected_entity": "",
+        "extra_info": ""
+      }
+    },
+    {
+      "operation": "data_enrichment",
+      "title": "Data Enrichment",
+      "annotation": "data_enrichment",
+      "description": "Search and Enrich Data on an underlying Elasticsearch instance.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "index",
+          "title": "Index",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Speicfy the Elasticsearch index to search in. Use ‘*’ forall, ‘raw’ for raw logs, ‘raw_meta.*.login’ for login, ‘raw_meta.netflow’ for network, and ‘raw_meta.*.file’ file access data entries.",
+          "description": "Speicfy the Elasticsearch index to search in. Use ‘*’ forall, ‘raw’ for raw logs, ‘raw_meta.*.login’ for login, ‘raw_meta.netflow’ for network, and ‘raw_meta.*.file’ file access data entries."
+        },
+        {
+          "name": "entity_ip",
+          "title": "Entity IP",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the IP address of entity to search for.",
+          "description": "Specify the IP address of entity to search for."
+        },
+        {
+          "name": "entity_name",
+          "title": "Entity Name",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Hostname/sensor name of entity to search for.",
+          "description": "Specify the Hostname/sensor name of entity to search for."
+        },
+        {
+          "name": "query",
+          "title": "Query",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Speicfy the query string to search for. Use this if you want a more generic search that searches across multiple fields and does substring matching.",
+          "description": "Speicfy the query string to search for. Use this if you want a more generic search that searches across multiple fields and does substring matching."
+        },
+        {
+          "name": "time_start",
+          "title": "Time Start",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Speicfy the Start time to search. Default to current time – 1 day. Time should be in epoch format.",
+          "description": "Speicfy the Start time to search. Default to current time – 1 day. Time should be in epoch format."
+        },
+        {
+          "name": "time_end",
+          "title": "Time End",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the End time to search. Default to current time. Time should be in epoch format",
+          "description": "Specify the End time to search. Default to current time. Time should be in epoch format"
+        },
+        {
+          "name": "limit",
+          "title": "Limit Per Page",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Speicfy the number of results to return per page. Defaults to 1000.",
+          "description": "Speicfy the number of results to return per page. Defaults to 1000."
+        }
+      ],
+      "output_schema": {
+        "_index": "",
+        "client_ip": "",
+        "event-v2": "",
+        "raw": "",
+        "sensor_name": "",
+        "timestamp": "",
+        "user": ""
+      }
+    }
+  ]
+}
