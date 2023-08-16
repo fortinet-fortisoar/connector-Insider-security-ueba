@@ -9,7 +9,7 @@ import time
 from connectors.core.connector import get_logger, ConnectorError
 from connectors.core.utils import update_connnector_config
 
-logger = get_logger("Insider-security-ueba")
+logger = get_logger("insider-security-ueba")
 
 
 class MakeRestApiCall:

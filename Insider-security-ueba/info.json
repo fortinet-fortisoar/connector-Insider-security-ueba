@@ -1,12 +1,12 @@
 {
-  "name": "Insider-security-ueba",
+  "name": "insider-security-ueba",
   "label": "Insider Security UEBA",
   "version": "1.0.0",
-  "description": "User and Entity Behaviour Analytics - Detect malicious user activity early in your on-premise or cloud infrastructure.",
+  "description": "User and Entity Behaviour Analytics - Detect malicious user activity early in your on-premise or cloud infrastructure. This connector facilitates automated operations of fetching Malicious activity alerts and searching Data Enrichment.",
   "publisher": "Fortinet",
   "cs_approved": false,
   "cs_compatible": true,
-  "category": "Threat Intelligence",
+  "category": "Insider Threat",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
   "help_online": "",
@@ -19,8 +19,8 @@
         "editable": true,
         "visible": true,
         "required": true,
-        "tooltip": "Specify the Sever URL of the InsiderSecurity Instance.",
-        "description": "Specify the Sever URL of the InsiderSecurity Instance."
+        "tooltip": "Specify the Sever URL of the Insider Security Instance.",
+        "description": "Specify the Sever URL of the Insider Security Instance."
       },
       {
         "name": "api_token",
@@ -46,74 +46,24 @@
   },
   "operations": [
     {
-      "operation": "get_alerts",
-      "title": "Get Alerts",
-      "annotation": "get_alerts",
-      "description": "Searches and fetches the latest matching alert OR Gets details regarding an alert ID.",
+      "operation": "get_alerts_by_id",
+      "title": "Get Alerts by ID",
+      "annotation": "get_alerts_by_id",
+      "description": "Get Alert details with respect to an Alert ID.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
       "enabled": true,
       "parameters": [
         {
-          "name": "action",
-          "title": "Action",
-          "type": "select",
+          "name": "id",
+          "title": "Alert ID",
+          "type": "text",
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Select the mode of Action of fetching alerts, By providing Alert ID or by Searching Alerts by Threat name",
-          "description": "Select the mode of Action of fetching alerts, By providing Alert ID or by Searching Alerts by Threat name",
-          "options": [
-            "get_meta",
-            "search_alert"
-          ],
-          "onchange": {
-            "get_meta": [
-              {
-                "name": "id",
-                "title": "Alert ID",
-                "type": "text",
-                "editable": true,
-                "visible": true,
-                "required": true,
-                "tooltip": "Specify the Alert ID You want to be fetched. This value can be retrieved from servicenow tickets, field ‘u_alert_id’.",
-                "description": "Specify the Alert ID You want to be fetched. This value can be retrieved from servicenow tickets, field ‘u_alert_id’."
-              }
-            ],
-            "search_alert": [
-              {
-                "name": "risk_entity",
-                "title": "Risk Entity",
-                "type": "text",
-                "editable": true,
-                "visible": true,
-                "required": true,
-                "tooltip": "Specify the entity which is at risk, It can be found in the ticket.",
-                "description": "Specify the entity which is at risk, It can be found in the ticket."
-              },
-              {
-                "name": "threat_name",
-                "title": "Threat Name",
-                "type": "text",
-                "editable": true,
-                "visible": true,
-                "required": true,
-                "tooltip": "Specify the Name of threat to look up and fetch.",
-                "description": "Specify the Name of threat to look up and fetch."
-              },
-              {
-                "name": "time_end",
-                "title": "Time END",
-                "type": "text",
-                "editable": true,
-                "visible": true,
-                "required": true,
-                "tooltip": "Specify the End time to search from. Time should be in epoch format.",
-                "description": "Specify the End time to search from. Time should be in epoch format."
-              }
-            ]
-          }
+          "tooltip": "Specify the Alert ID You want to be fetched. This value can be retrieved from servicenow tickets, field ‘u_alert_id’.",
+          "description": "Specify the Alert ID You want to be fetched. This value can be retrieved from servicenow tickets, field ‘u_alert_id’."
         }
       ],
       "output_schema": {
@@ -126,8 +76,8 @@
       }
     },
     {
-      "operation": "data_enrichment",
-      "title": "Data Enrichment",
+      "operation": "search_data_enrichment",
+      "title": "Search Data Enrichment",
       "annotation": "data_enrichment",
       "description": "Search and Enrich Data on an underlying Elasticsearch instance.",
       "category": "investigation",
@@ -197,13 +147,13 @@
         },
         {
           "name": "limit",
-          "title": "Limit Per Page",
+          "title": "Limit",
           "type": "text",
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Speicfy the number of results to return per page. Defaults to 1000.",
-          "description": "Speicfy the number of results to return per page. Defaults to 1000."
+          "tooltip": "Specify the number of results to return per page. Defaults to 1000.",
+          "description": "Specify the number of results to return per page. Defaults to 1000."
         }
       ],
       "output_schema": {
@@ -215,6 +165,56 @@
         "timestamp": "",
         "user": ""
       }
+    },
+    {
+      "operation": "search_alert",
+      "title": "Search Alert by Alert Name",
+      "annotation": "search_alert",
+      "description": "Searches and fetches the latest matching alert according to given Threat Name",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "_timestamp": "",
+        "type": "",
+        "risk_entity": ",",
+        "attack_entity": "",
+        "affected_entity": "",
+        "extra_info": ""
+      },
+      "parameters": [
+        {
+          "name": "risk_entity",
+          "title": "Risk Entity",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the entity which is at risk, It can be found in the ticket.",
+          "description": "Specify the entity which is at risk, It can be found in the ticket."
+        },
+        {
+          "name": "threat_name",
+          "title": "Threat Name",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the Name of threat to look up and fetch.",
+          "description": "Specify the Name of threat to look up and fetch."
+        },
+        {
+          "name": "time_end",
+          "title": "Time END",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the End time to search from. Time should be in epoch format.",
+          "description": "Specify the End time to search from. Time should be in epoch format."
+        }
+      ]
     }
   ]
 }

@@ -10,7 +10,7 @@ def _check_health(config: dict) -> bool:
     try:
         endpoint = "/api/token/alerts"
         method = "GET"
-        params = {"index": "*"}
+        params = {"index": "*", "limit": "5"}
         MS = MakeRestApiCall(config=config)
         MS.make_request(endpoint=endpoint, method=method,params=params)
         return True

@@ -2,45 +2,45 @@
   "type": "workflow_collections",
   "data": [
     {
-      "uuid": "99a91208-c318-4093-8a43-b6c02de8dd60",
+      "uuid": "6fe54c7b-2db5-4027-aef3-0e1eec79cbe5",
       "@type": "WorkflowCollection",
       "name": "Sample - Insider Security UEBA - 1.0.0",
-      "description": "User and Entity Behaviour Analytics - Detect malicious user activity early in your on-premise or cloud infrastructure.",
+      "description": "User and Entity Behaviour Analytics - Detect malicious user activity early in your on-premise or cloud infrastructure. This connector facilitates automated operations of fetching Malicious activity alerts and searching Data Enrichment.",
       "visible": true,
       "image": null,
       "recordTags": [
         "Insider",
-        "Insider-security-ueba"
+        "insider-security-ueba"
       ],
       "workflows": [
         {
           "@type": "Workflow",
-          "uuid": "b1ea11e1-df10-4e03-acc0-9b38f2caf0c7",
-          "collection": "/api/3/workflow_collections/99a91208-c318-4093-8a43-b6c02de8dd60",
+          "uuid": "c94cf3e0-98ac-43df-bd24-9ae5bf1bdc60",
+          "collection": "/api/3/workflow_collections/6fe54c7b-2db5-4027-aef3-0e1eec79cbe5",
           "triggerLimit": null,
-          "description": "Searches and fetches the latest matching alert OR Gets details regarding an alert ID.",
-          "name": "Get Alerts",
+          "description": "Searches and fetches the latest matching alert OR Get Alert details regarding an alert ID.",
+          "name": "Get Alerts by ID",
           "tag": "#Insider Security UEBA",
           "recordTags": [
             "Insider",
-            "Insider-security-ueba"
+            "insider-security-ueba"
           ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/fe5d990e-bb58-4e25-ada6-2fab4c66a428",
+          "triggerStep": "/api/3/workflow_steps/7a9fd49d-1668-4f85-aba1-d57d345401e7",
           "steps": [
             {
-              "uuid": "fe5d990e-bb58-4e25-ada6-2fab4c66a428",
+              "uuid": "7a9fd49d-1668-4f85-aba1-d57d345401e7",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "32cdd54b-6e32-4732-a529-724a13a2e192",
-                "title": "Insider Security UEBA: Get Alerts",
+                "route": "d8b80f58-c832-4d9a-92f7-db0ad53eea55",
+                "title": "Insider Security UEBA: Get Alerts by ID",
                 "resources": [
                   "alerts"
                 ],
@@ -59,9 +59,9 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "05a2497b-0292-401c-9bae-3927bf606611",
+              "uuid": "d3f74e2c-a342-4252-8f04-c7a721d78d82",
               "@type": "WorkflowStep",
-              "name": "Get Alerts",
+              "name": "Get Alerts by ID",
               "description": null,
               "status": null,
               "arguments": {
@@ -69,9 +69,9 @@
                 "config": "''",
                 "params": [],
                 "version": "1.0.0",
-                "connector": "Insider-security-ueba",
-                "operation": "get_alerts",
-                "operationTitle": "Get Alerts",
+                "connector": "insider-security-ueba",
+                "operation": "get_alerts_by_id",
+                "operationTitle": "Get Alerts by ID",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
@@ -84,43 +84,43 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "7509b3bd-3856-4ab0-9a84-db8676b85d6e",
+              "uuid": "64953efb-70bc-483b-9217-d1df63e6403f",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> Get Alerts",
-              "sourceStep": "/api/3/workflow_steps/fe5d990e-bb58-4e25-ada6-2fab4c66a428",
-              "targetStep": "/api/3/workflow_steps/05a2497b-0292-401c-9bae-3927bf606611"
+              "name": "Start-> Get Alerts by ID",
+              "sourceStep": "/api/3/workflow_steps/7a9fd49d-1668-4f85-aba1-d57d345401e7",
+              "targetStep": "/api/3/workflow_steps/d3f74e2c-a342-4252-8f04-c7a721d78d82"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "e611e29e-bb41-4951-ada1-eacdd1202b9f",
-          "collection": "/api/3/workflow_collections/99a91208-c318-4093-8a43-b6c02de8dd60",
+          "uuid": "cbc7e9fc-4e31-4788-826f-ce72b4fd2b09",
+          "collection": "/api/3/workflow_collections/6fe54c7b-2db5-4027-aef3-0e1eec79cbe5",
           "triggerLimit": null,
           "description": "Search and Enrich Data on an underlying Elasticsearch instance.",
-          "name": "Data Enrichment",
+          "name": "Search Data Enrichment",
           "tag": "#Insider Security UEBA",
           "recordTags": [
             "Insider",
-            "Insider-security-ueba"
+            "insider-security-ueba"
           ],
           "isActive": false,
           "debug": false,
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/af978392-508e-4cda-89d0-3195c5b25832",
+          "triggerStep": "/api/3/workflow_steps/dcb9f58f-d475-4e9e-a04b-5ad68a9d21fd",
           "steps": [
             {
-              "uuid": "af978392-508e-4cda-89d0-3195c5b25832",
+              "uuid": "dcb9f58f-d475-4e9e-a04b-5ad68a9d21fd",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "732157cd-2813-489c-9d5c-8f3d6166574b",
-                "title": "Insider Security UEBA: Data Enrichment",
+                "route": "0d4bb2c1-4643-4659-a0b8-9d9e849f1ed1",
+                "title": "Insider Security UEBA: Search Data Enrichment",
                 "resources": [
                   "alerts"
                 ],
@@ -139,9 +139,9 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "af7d1773-ad6d-4e29-9d4f-ed31a7a80934",
+              "uuid": "462bef84-8720-49c0-9ba1-1c000af2a303",
               "@type": "WorkflowStep",
-              "name": "Data Enrichment",
+              "name": "Search Data Enrichment",
               "description": null,
               "status": null,
               "arguments": {
@@ -149,9 +149,9 @@
                 "config": "''",
                 "params": [],
                 "version": "1.0.0",
-                "connector": "Insider-security-ueba",
+                "connector": "insider-security-ueba",
                 "operation": "data_enrichment",
-                "operationTitle": "Data Enrichment",
+                "operationTitle": "Search Data Enrichment",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
@@ -164,12 +164,92 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "ea10c972-8b4b-4046-bdd7-a13c1c5ae131",
+              "uuid": "a4a7aac0-8d55-4430-812d-62e56a266d07",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> Data Enrichment",
-              "sourceStep": "/api/3/workflow_steps/af978392-508e-4cda-89d0-3195c5b25832",
-              "targetStep": "/api/3/workflow_steps/af7d1773-ad6d-4e29-9d4f-ed31a7a80934"
+              "name": "Start-> Search Data Enrichment",
+              "sourceStep": "/api/3/workflow_steps/dcb9f58f-d475-4e9e-a04b-5ad68a9d21fd",
+              "targetStep": "/api/3/workflow_steps/462bef84-8720-49c0-9ba1-1c000af2a303"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "33580427-e118-4586-a6c5-feb13cedd44e",
+          "collection": "/api/3/workflow_collections/6fe54c7b-2db5-4027-aef3-0e1eec79cbe5",
+          "triggerLimit": null,
+          "description": "Searches and fetches the latest matching alert according to given Threat Name",
+          "name": "Search Alert by Alert Name",
+          "tag": "#Insider Security UEBA",
+          "recordTags": [
+            "Insider",
+            "insider-security-ueba"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/2ec7b3d2-9b11-48cd-9fdd-4f289b3768dc",
+          "steps": [
+            {
+              "uuid": "2ec7b3d2-9b11-48cd-9fdd-4f289b3768dc",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "5c70e2dd-c746-4528-99c7-c19789cdf0b0",
+                "title": "Insider Security UEBA: Search Alert by Alert Name",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "0274866d-5523-442d-907d-c05ab8668420",
+              "@type": "WorkflowStep",
+              "name": "Search Alert by Alert Name",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Insider Security UEBA",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "insider-security-ueba",
+                "operation": "search_alert",
+                "operationTitle": "Search Alert by Alert Name",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "bd81e7b8-4d65-4af4-8a6a-52f46a5a00c0",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Search Alert by Alert Name",
+              "sourceStep": "/api/3/workflow_steps/2ec7b3d2-9b11-48cd-9fdd-4f289b3768dc",
+              "targetStep": "/api/3/workflow_steps/0274866d-5523-442d-907d-c05ab8668420"
             }
           ]
         }
