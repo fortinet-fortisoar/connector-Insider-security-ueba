@@ -11,13 +11,13 @@ logger = get_logger("insider-security-ueba")
 def get_alerts_by_id(config: dict, params: dict) -> dict:
     endpoint = "/api/token/alerts"
     method = "GET"
-    params.update({"action" : "get_meta"})
+    params.update({"action": "get_meta"})
 
     MK = MakeRestApiCall(config=config)
     response = MK.make_request(endpoint=endpoint, method=method, params=params)
     return response
 
-def search_alert(config: dict, params: dict) -> dict:
+def search_alerts(config: dict, params: dict) -> dict:
     endpoint = "/api/token/alerts"
     method = "GET"
     params.update({"action": "search_alert"})
@@ -38,5 +38,5 @@ def search_data_enrichment(config: dict, params: dict) -> dict:
 operations = {
     "get_alerts_by_id": get_alerts_by_id,
     "search_data_enrichment": search_data_enrichment,
-    "search_alert": search_alert
+    "search_alerts": search_alerts
 }

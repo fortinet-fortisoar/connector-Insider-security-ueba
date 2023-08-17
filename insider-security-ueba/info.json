@@ -167,9 +167,9 @@
       }
     },
     {
-      "operation": "search_alert",
-      "title": "Search Alert by Alert Name",
-      "annotation": "search_alert",
+      "operation": "search_alerts",
+      "title": "Search Alerts",
+      "annotation": "search_alerts",
       "description": "Searches and fetches the latest matching alert according to given Threat Name",
       "category": "investigation",
       "is_config_required": true,
@@ -206,7 +206,7 @@
         },
         {
           "name": "time_end",
-          "title": "Time END",
+          "title": "Time End",
           "type": "text",
           "editable": true,
           "visible": true,
