@@ -92,8 +92,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Speicfy the Elasticsearch index to search in. Use ‘*’ forall, ‘raw’ for raw logs, ‘raw_meta.*.login’ for login, ‘raw_meta.netflow’ for network, and ‘raw_meta.*.file’ file access data entries.",
-          "description": "Speicfy the Elasticsearch index to search in. Use ‘*’ forall, ‘raw’ for raw logs, ‘raw_meta.*.login’ for login, ‘raw_meta.netflow’ for network, and ‘raw_meta.*.file’ file access data entries."
+          "tooltip": "Specify the Elasticsearch index to search in. Use ‘*’ for all, ‘raw’ for raw logs, ‘raw_meta.*.login’ for login, ‘raw_meta.netflow’ for network, and ‘raw_meta.*.file’ file access data entries.",
+          "description": "Specify the Elasticsearch index to search in. Use ‘*’ for all, ‘raw’ for raw logs, ‘raw_meta.*.login’ for login, ‘raw_meta.netflow’ for network, and ‘raw_meta.*.file’ file access data entries."
         },
         {
           "name": "entity_ip",
@@ -122,28 +122,28 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Speicfy the query string to search for. Use this if you want a more generic search that searches across multiple fields and does substring matching.",
-          "description": "Speicfy the query string to search for. Use this if you want a more generic search that searches across multiple fields and does substring matching."
+          "tooltip": "Specify the query string to search for. Use this if you want a more generic search that searches across multiple fields and does substring matching.",
+          "description": "Specify the query string to search for. Use this if you want a more generic search that searches across multiple fields and does substring matching."
         },
         {
           "name": "time_start",
           "title": "Time Start",
-          "type": "text",
+          "type": "datetime",
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Speicfy the Start time to search. Default to current time – 1 day. Time should be in epoch format.",
-          "description": "Speicfy the Start time to search. Default to current time – 1 day. Time should be in epoch format."
+          "tooltip": "Specify the Start time to search. Default to current time – 1 day.",
+          "description": "Specify the Start time to search. Default to current time – 1 day."
         },
         {
           "name": "time_end",
           "title": "Time End",
-          "type": "text",
+          "type": "datetime",
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the End time to search. Default to current time. Time should be in epoch format",
-          "description": "Specify the End time to search. Default to current time. Time should be in epoch format"
+          "tooltip": "Specify the End time to search. Default value is current time. ",
+          "description": "Specify the End time to search. Default value is current time. "
         },
         {
           "name": "limit",
@@ -170,7 +170,7 @@
       "operation": "search_alerts",
       "title": "Search Alerts",
       "annotation": "search_alerts",
-      "description": "Searches and fetches the latest matching alert according to given Threat Name",
+      "description": "Searches and fetches the latest matching alert based on specified filters.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -207,12 +207,12 @@
         {
           "name": "time_end",
           "title": "Time End",
-          "type": "text",
+          "type": "datetime",
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the End time to search from. Time should be in epoch format.",
-          "description": "Specify the End time to search from. Time should be in epoch format."
+          "tooltip": "Specify the End time to search from.",
+          "description": "Specify the End time to search from."
         }
       ]
     }
