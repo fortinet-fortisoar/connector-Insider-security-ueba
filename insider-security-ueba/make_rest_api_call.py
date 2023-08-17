@@ -16,6 +16,9 @@ class MakeRestApiCall:
 
     def __init__(self, config):
         self.server_url = config.get('server_url', '')
+        if not (self.server_url.startswith("https://") or self.server_url.startswith("http://")):
+            self.server_url = "https://" + self.server_url
+
         self.verify_ssl = config.get("verify_ssl", True)
         self.method_header = {"Authorization": config.get('api_token')}
 
