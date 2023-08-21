@@ -1,15 +1,15 @@
 {
   "name": "insider-security-ueba",
-  "label": "Insider Security UEBA",
+  "label": "InsiderSecurity UEBA",
   "version": "1.0.0",
-  "description": "User and Entity Behaviour Analytics - Detect malicious user activity early in your on-premise or cloud infrastructure. This connector facilitates automated operations of fetching Malicious activity alerts and searching Data Enrichment.",
+  "description": "InsiderSecurity UEBA (User and Entity Behaviour Analytics) detects malicious user activity early in your on-premise or cloud infrastructure, allowing you to take action early and avoid data loss.",
   "publisher": "Fortinet",
   "cs_approved": false,
   "cs_compatible": true,
   "category": "Insider Threat",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/insidersecurity-ueba/656/insidersecurity-ueba-v1-0-0",
   "configuration": {
     "fields": [
       {
@@ -19,8 +19,8 @@
         "editable": true,
         "visible": true,
         "required": true,
-        "tooltip": "Specify the Sever URL of the Insider Security Instance.",
-        "description": "Specify the Sever URL of the Insider Security Instance."
+        "tooltip": "Specify the URL of the Insider Security server to which you will connect and perform automated operations. ",
+        "description": "Specify the URL of the Insider Security server to which you will connect and perform automated operations. "
       },
       {
         "name": "api_token",
@@ -29,8 +29,8 @@
         "editable": true,
         "visible": true,
         "required": true,
-        "tooltip": "Specify the API Token that you have generated on the InsiderSecurity instance.",
-        "description": "Specify the API Token that you have generated on the InsiderSecurity instance."
+        "tooltip": "Specify the API Token that you have generated on the InsiderSecurity instance and which you will use to access the InsiderSecurity instance and perform automated operations.",
+        "description": "Specify the API Token that you have generated on the InsiderSecurity instance and which you will use to access the InsiderSecurity instance and perform automated operations."
       },
       {
         "name": "verify_ssl",
@@ -49,7 +49,7 @@
       "operation": "get_alerts_by_id",
       "title": "Get Alerts by ID",
       "annotation": "get_alerts_by_id",
-      "description": "Get Alert details with respect to an Alert ID.",
+      "description": "Retrieve details for a specific alert from InsiderSecurity based on the alert ID you have specified. ",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -62,8 +62,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the Alert ID You want to be fetched. This value can be retrieved from servicenow tickets, field ‘u_alert_id’.",
-          "description": "Specify the Alert ID You want to be fetched. This value can be retrieved from servicenow tickets, field ‘u_alert_id’."
+          "tooltip": "Specify the ID of the alert whose details you want to retrieve from InsiderSecurity. You can retrieve the alert ID using the ‘u_alert_id’ field in ServiceNow tickets.",
+          "description": "Specify the ID of the alert whose details you want to retrieve from InsiderSecurity. You can retrieve the alert ID using the ‘u_alert_id’ field in ServiceNow tickets."
         }
       ],
       "output_schema": {
@@ -79,7 +79,7 @@
       "operation": "search_data_enrichment",
       "title": "Search Data Enrichment",
       "annotation": "data_enrichment",
-      "description": "Search and Enrich Data on an underlying Elasticsearch instance.",
+      "description": "Searches and enriches data on an underlying Elasticsearch instance based on the Elasticsearch index and optionally, the query, entity IP, etc you have specified.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -92,8 +92,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the Elasticsearch index to search in. Use ‘*’ for all, ‘raw’ for raw logs, ‘raw_meta.*.login’ for login, ‘raw_meta.netflow’ for network, and ‘raw_meta.*.file’ file access data entries.",
-          "description": "Specify the Elasticsearch index to search in. Use ‘*’ for all, ‘raw’ for raw logs, ‘raw_meta.*.login’ for login, ‘raw_meta.netflow’ for network, and ‘raw_meta.*.file’ file access data entries."
+          "tooltip": "Specify the Elasticsearch index using which you want to search the data. Use '*' for all, 'raw' for raw logs, 'raw_meta.*.login' for login data, 'raw_meta.netflow' for network data, and 'raw_meta.*.file' for file access data entries.",
+          "description": "Specify the Elasticsearch index using which you want to search the data. Use '*' for all, 'raw' for raw logs, 'raw_meta.*.login' for login data, 'raw_meta.netflow' for network data, and 'raw_meta.*.file' for file access data entries."
         },
         {
           "name": "entity_ip",
@@ -102,8 +102,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the IP address of entity to search for.",
-          "description": "Specify the IP address of entity to search for."
+          "tooltip": "Specify the IP address of the entity that you want to search for in the underlying Elasticsearch instance",
+          "description": "Specify the IP address of the entity that you want to search for in the underlying Elasticsearch instance"
         },
         {
           "name": "entity_name",
@@ -112,8 +112,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Hostname/sensor name of entity to search for.",
-          "description": "Specify the Hostname/sensor name of entity to search for."
+          "tooltip": "Specify the hostname or the sensor name of the entity that you want to search for in the underlying Elasticsearch instance.",
+          "description": "Specify the hostname or the sensor name of the entity that you want to search for in the underlying Elasticsearch instance."
         },
         {
           "name": "query",
@@ -122,8 +122,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the query string to search for. Use this if you want a more generic search that searches across multiple fields and does substring matching.",
-          "description": "Specify the query string to search for. Use this if you want a more generic search that searches across multiple fields and does substring matching."
+          "tooltip": "Specify the query string using which you want to search for data in the underlying Elasticsearch instance. Use this option if you want to perform a more generic search that searches across multiple fields and also does substring matching.",
+          "description": "Specify the query string using which you want to search for data in the underlying Elasticsearch instance. Use this option if you want to perform a more generic search that searches across multiple fields and also does substring matching."
         },
         {
           "name": "time_start",
@@ -132,8 +132,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Start time to search. Default to current time – 1 day.",
-          "description": "Specify the Start time to search. Default to current time – 1 day."
+          "tooltip": "Specify the Start DateTime from when you want to search for data in the underlying Elasticsearch instance.By default, this is set to 'current time – 1 day'.",
+          "description": "Specify the Start DateTime from when you want to search for data in the underlying Elasticsearch instance.By default, this is set to 'current time – 1 day'."
         },
         {
           "name": "time_end",
@@ -142,8 +142,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the End time to search. Default value is current time. ",
-          "description": "Specify the End time to search. Default value is current time. "
+          "tooltip": "Specify the End DateTime till when you want to search for data in the underlying Elasticsearch instance.By default, this is set to 'current time'.",
+          "description": "Specify the End DateTime till when you want to search for data in the underlying Elasticsearch instance.By default, this is set to 'current time'."
         },
         {
           "name": "limit",
@@ -152,8 +152,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the number of results to return per page. Defaults to 1000.",
-          "description": "Specify the number of results to return per page. Defaults to 1000."
+          "tooltip": "Specify the number of results that should be returned in a single search. By default, this is set to 1000.",
+          "description": "Specify the number of results that should be returned in a single search. By default, this is set to 1000."
         }
       ],
       "output_schema": {
@@ -170,7 +170,7 @@
       "operation": "search_alerts",
       "title": "Search Alerts",
       "annotation": "search_alerts",
-      "description": "Searches and fetches the latest matching alert based on specified filters.",
+      "description": "Searches and fetches the latest alerts from InsiderSecurity that match the filters such as risk entity, threat name, etc., you have specified.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -191,8 +191,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the entity which is at risk, It can be found in the ticket.",
-          "description": "Specify the entity which is at risk, It can be found in the ticket."
+          "tooltip": "Specify the Entity which is at Risk. The entity information can be found in the ServiceNow ticket.",
+          "description": "Specify the Entity which is at Risk. The entity information can be found in the ServiceNow ticket."
         },
         {
           "name": "threat_name",
@@ -201,8 +201,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the Name of threat to look up and fetch.",
-          "description": "Specify the Name of threat to look up and fetch."
+          "tooltip": "Specify the name of the threat that you want to look up and fetch from InsiderSecurity. ",
+          "description": "Specify the name of the threat that you want to look up and fetch from InsiderSecurity. "
         },
         {
           "name": "time_end",
@@ -211,8 +211,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the End time to search from.",
-          "description": "Specify the End time to search from."
+          "tooltip": "Specify the End DateTime till when you want to search for alerts in InsiderSecurity. ",
+          "description": "Specify the End DateTime till when you want to search for alerts in InsiderSecurity. "
         }
       ]
     }
